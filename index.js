@@ -1,34 +1,23 @@
 // use strict;
-const userName = prompt('Please enter your first name', 'John');
-const userLastName = prompt('now your last name', 'Doe');
-const userAge = prompt('and your age (whole number)');
+const userNumber = prompt('Please enter any integer 5-digits number');
 
-const YOUNG_AGE = 18;
-const QUITE_OLD_AGE = 60;
-const VERY_OLD_AGE = 85;
-const IMPOSSIBLE_AGE = 100;
 
-if (!userName?.trim() || !userLastName?.trim() || !userAge?.trim()) {
-    alert('You did not enter all necessary data, bye!');
+if (!userNumber?.trim()) {
+    alert('You did not enter necessary data, bye!');
 }
 
-else if (!Number.isInteger(+userAge) || (+userAge < 0) || (+userAge > IMPOSSIBLE_AGE)) {
-    alert(`I don't believe that ${userAge} is your real age ;) `);
+else if (!Number.isInteger(+userNumber)) {
+    alert(`${userNumber} is not an integer 5-digits number. Try again!`);
 }
 
 else {
-    let greeting = `Hello, ${userName} ${userLastName}! `;
-    if (+userAge < YOUNG_AGE) {
-        greeting += "What's up?";
-    }
-    else if (+userAge < QUITE_OLD_AGE) {
-        greeting += "Welcome to our site!";
-    }
-    else if (+userAge < VERY_OLD_AGE) {
-        greeting += "You are amazing!";
+    const preparedNumber = String(Math.abs(+userNumber));
+    if (preparedNumber.length === 5) {
+        let newNumberStr = preparedNumber;
+        newNumberStr = `${newNumberStr[0]} ${newNumberStr[1]} ${newNumberStr[2]} ${newNumberStr[3]} ${newNumberStr[4]}`;
+        alert(`Your number delimited with spaces is: ${newNumberStr}`);
     }
     else {
-        greeting += "How are you today?";
+        alert(`${preparedNumber} is not an integer 5-digits number. Try again!`);
     }
-    alert(greeting);
 }
